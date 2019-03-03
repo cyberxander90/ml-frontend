@@ -1,6 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import "./header.scss";
+import './header.scss';
+import SearchForm from 'components/search-form';
 
 function Header() {
   return (
@@ -8,7 +9,11 @@ function Header() {
       <a className="header__link" href="/">
         Mercado Libre
       </a>
-      <input className="header__search-form" />
+      <SearchForm
+        formClassName="header__search-form"
+        onChange={value => console.log(value)}
+        onSubmit={value => console.log('submit: ', value)}
+      />
     </div>
   );
 }
