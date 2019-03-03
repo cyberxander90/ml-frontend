@@ -1,0 +1,11 @@
+{
+  "eslint.enable": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "prettier.tabWidth": 2,
+  "prettier.eslintIntegration": true,
+  "prettier.stylelintIntegration": true,
+  "beautify.ignore": [
+    "**/*.jsx"
+  ]
+}
