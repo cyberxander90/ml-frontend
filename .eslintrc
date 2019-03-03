@@ -1,38 +1,39 @@
 {
-  "extends": [
-    "airbnb",
-    "eslint:recommended"
-  ],
-  "rules": {
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
-      }
+    "extends": [
+        "airbnb",
+        "eslint:recommended"
     ],
-    "comma-dangle": 0
-  },
-  "globals": {
-    "window": true,
-    "document": true
-  },
-  "parser": "babel-eslint",
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "moduleDirectory": [
-          "node_modules",
-          "src/"
-        ]
-      }
+    "rules": {
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ],
+        "comma-dangle": 0,
+        "react/jsx-one-expression-per-line": 0
+    },
+    "globals": {
+        "window": true,
+        "document": true
+    },
+    "parser": "babel-eslint",
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "moduleDirectory": [
+                    "node_modules",
+                    "src/"
+                ]
+            }
+        }
+    },
+    "env": {
+        "es6": true,
+        "browser": true,
+        "node": true
     }
-  },
-  "env": {
-    "es6": true,
-    "browser": true,
-    "node": true
-  }
 }
