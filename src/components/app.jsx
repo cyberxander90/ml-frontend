@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import "./app.scss";
+import Header from "components/header";
 
 function App() {
   const bootstrapLayout = {
@@ -13,7 +14,9 @@ function App() {
   return (
     <Container fluid>
       <Row className="app__top-bar">
-        <Col {...bootstrapLayout}>Header</Col>
+        <Col {...bootstrapLayout}>
+          <Header />
+        </Col>
       </Row>
       <Row className="app__content">
         <Col {...bootstrapLayout}>Content</Col>

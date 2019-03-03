@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+}
+
+.header__link {
+  background-image: url('/assets/logo.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 53px;
+  height: 36px;
+  color: transparent;
+  margin-right: 20px;
+
+  &:hover {
+    color: transparent;
+  }
+}
+
+.header__search-form {
+  flex-grow: 1;
+}
