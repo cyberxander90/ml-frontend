@@ -1,0 +1,12 @@
+.product-list {
+  background: #FFFFFF;
+  padding: 0 16px;
+
+  &__item {
+    padding: 16px 0;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #EEEEEE;
+    }
+  }
+}

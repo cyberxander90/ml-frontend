@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import './app.scss';
 import Header from 'components/header';
+import ProductList from 'components/products/product-list';
 
 function App() {
   const bootstrapLayout = {
@@ -19,7 +20,9 @@ function App() {
         </Col>
       </Row>
       <Row className="app__content">
-        <Col {...bootstrapLayout}>Content</Col>
+        <Col {...bootstrapLayout}>
+          <ProductList />
+        </Col>
       </Row>
     </Container>
   );
