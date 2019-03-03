@@ -1,8 +1,8 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 
-import "./app.scss";
-import Header from "components/header";
+import './app.scss';
+import Header from 'components/header';
 
 function App() {
   const bootstrapLayout = {
@@ -12,7 +12,7 @@ function App() {
   };
 
   return (
-    <Container fluid>
+    <Container fluid className="app">
       <Row className="app__top-bar">
         <Col {...bootstrapLayout}>
           <Header />
