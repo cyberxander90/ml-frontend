@@ -6,10 +6,10 @@ import { Frontload } from 'react-frontload';
 
 import './index.scss';
 import App from 'components/app';
-import store from 'store';
+import buildStore from 'build-store';
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={buildStore()}>
     <BrowserRouter>
       <Frontload noServerRender>
         <App />

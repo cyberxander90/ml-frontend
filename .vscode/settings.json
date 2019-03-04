@@ -9,5 +9,8 @@
   "beautify.ignore": [
     "**/*.jsx",
     "**/*.js",
+  ],
+  "cSpell.words": [
+    "Frontload"
   ]
 }

@@ -14,7 +14,7 @@ const frontload = async props => {
   if (query.search == props.searchTerm) {
     return;
   }
-  return await props.fetchProducts(query.search);
+  await props.fetchProducts(query.search);
 };
 
 function ProductListPage({ products, categories, isLoading, searchTerm }) {
@@ -43,7 +43,7 @@ export default connect(
   { fetchProducts }
 )(
   frontloadConnect(frontload, {
-    // onMount: true,
-    // onUpdate: true
+    onMount: true,
+    onUpdate: false
   })(ProductListPage)
 );
