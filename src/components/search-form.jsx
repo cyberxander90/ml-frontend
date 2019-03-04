@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Form, FormControl, InputGroup, Button } from 'react-bootstrap';
 
 const propTypes = {
+  searchText: PropTypes.string,
   placeholder: PropTypes.string,
   formClassName: PropTypes.string,
   onChange: PropTypes.func,
@@ -10,6 +11,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  searchText: '',
   placeholder: '',
   formClassName: '',
   onChange: null,
@@ -17,11 +19,11 @@ const defaultProps = {
 };
 
 class SearchForm extends React.Component {
-  constructor() {
+  constructor(props) {
     super(...arguments);
 
     this.state = {
-      searchText: ''
+      searchText: props.searchText
     };
 
     this.onChange = this.onChange.bind(this);

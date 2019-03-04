@@ -5,6 +5,8 @@ import { LIMIT_RESULTS } from 'constant';
 // prettier-ignore
 export const fetchProducts = (searchTerm, limit = LIMIT_RESULTS) =>
   async (dispatch, getState, api) => {
+    dispatch({ type: TYPES.LOADING_PRODUCTS });
+
     const query = qs.stringify({
       q: searchTerm,
       limit
@@ -15,15 +17,17 @@ export const fetchProducts = (searchTerm, limit = LIMIT_RESULTS) =>
       type: TYPES.FETCH_PRODUCTS,
       payload: {
         products: items,
-        categories
+        categories,
+        searchTerm
       }
     });
   };
 
 export const findProduct = productId => async (dispatch, getState, api) => {
+  dispatch({ type: TYPES.LOADING_PRODUCTS });
+
   const { data } = await api.get(`/item/${productId}`);
   const { item, categories } = data;
-  console.log(data);
   dispatch({
     type: TYPES.FIND_PRODUCT,
     payload: {

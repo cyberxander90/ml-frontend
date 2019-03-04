@@ -6,10 +6,13 @@ import ProductList from 'components/products/product-list';
 import Breadcrumb from 'components/breadcrumb';
 
 const frontload = async props => {
-  return await props.findProduct(props.productId);
+  return await props.findProduct(props.match.params.id);
 };
 
-function ProductDetailsPage({ product, categories }) {
+function ProductDetailsPage({ isLoading, product, categories }) {
+  if (isLoading && !product) {
+    return <h1>Loading Prodcut</h1>;
+  }
   return (
     <div>
       <h1>ProductListPage</h1>
@@ -20,11 +23,12 @@ function ProductDetailsPage({ product, categories }) {
 }
 
 export default connect(
-  (state, ownProps) => {
-    console.log(ownProps);
+  ({ products }, ownProps) => {
     const result = {
-      productId: ownProps.match.params.id,
-      product: state.products.allProducts[ownProps.match.params.id]
+      isLoading: products.isLoading,
+      categories: products.categories,
+      product:
+        products.selectedProduct || products.products[ownProps.match.params.id]
     };
     return result;
   },

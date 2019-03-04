@@ -10,30 +10,40 @@ import Breadcrumb from 'components/breadcrumb';
 
 const frontload = async props => {
   const query = queryString.parse(props.location.search);
+  if (query.search == props.searchTerm) {
+    return;
+  }
   return await props.fetchProducts(query.search);
 };
 
-function ProductListPage({ products, categories }) {
+function ProductListPage({ products, categories, isLoading }) {
+  if (isLoading) {
+    return <p>Loading</p>;
+  }
+
   return (
     <div>
       <h1>ProductListPage</h1>
       <Breadcrumb items={categories} />
-      <ProductList products={products || []} />
+      <ProductList products={products} />
     </div>
   );
 }
 
 export default connect(
-  state => {
-    console.log(state);
+  ({ products }) => {
+    console.log('hhhhh');
     return {
-      products: _.take(Object.values(state.products.allProducts), LIMIT_RESULTS)
+      isLoading: products.isLoading,
+      categories: products.categories,
+      products: _.take(Object.values(products.products), LIMIT_RESULTS),
+      searchTerm: products.searchTerm
     };
   },
   { fetchProducts }
 )(
   frontloadConnect(frontload, {
-    onMount: true,
-    onUpdate: false
+    // onMount: true,
+    // onUpdate: true
   })(ProductListPage)
 );

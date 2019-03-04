@@ -3,31 +3,36 @@ import * as TYPES from 'actions/types';
 
 const initialState = {
   categories: [],
-  allProducts: {},
-  currentProduct: null
+  products: {},
+  selectedProduct: null,
+  isLoading: true,
+  searchTerm: ''
 };
 
 export default function(state = initialState, action) {
-  console.log(action);
   switch (action.type) {
+    case TYPES.LOADING_PRODUCTS:
+      return {
+        ...state,
+        isLoading: true
+      };
     case TYPES.FETCH_PRODUCTS:
       return {
         ...state,
         categories: action.payload.categories,
-        allProducts: {
-          ...state.allProducts,
-          ..._.mapKeys(action.payload.products, 'id')
-        }
+        products: _.mapKeys(action.payload.products, 'id'),
+        selectedProduct: null,
+        isLoading: false,
+        searchTerm: action.payload.searchTerm
       };
     case TYPES.FIND_PRODUCT:
       return {
         ...state,
         categories: action.payload.categories,
-        allProducts: {
-          ...state.allProducts,
-          [action.payload.product.id]: action.payload.product
-        },
-        currentProduct: action.payload.product
+        products: [],
+        selectedProduct: action.payload.product,
+        isLoading: false,
+        searchTerm: ''
       };
     default:
       return state;
