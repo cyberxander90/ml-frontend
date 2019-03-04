@@ -21,7 +21,9 @@ export const fetchProducts = (searchTerm, limit = LIMIT_RESULTS) =>
   };
 
 export const findProduct = productId => async (dispatch, getState, api) => {
-  const { item, categories } = await api.get(`/item/${productId}`);
+  const { data } = await api.get(`/item/${productId}`);
+  const { item, categories } = data;
+  console.log(data);
   dispatch({
     type: TYPES.FIND_PRODUCT,
     payload: {

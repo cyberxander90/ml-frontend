@@ -8,6 +8,7 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
+  console.log(action);
   switch (action.type) {
     case TYPES.FETCH_PRODUCTS:
       return {
@@ -24,7 +25,7 @@ export default function(state = initialState, action) {
         categories: action.payload.categories,
         allProducts: {
           ...state.allProducts,
-          [action.payload.id]: action.payload.product
+          [action.payload.product.id]: action.payload.product
         },
         currentProduct: action.payload.product
       };

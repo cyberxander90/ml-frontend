@@ -5,48 +5,39 @@ import { Image, Col, Row } from 'react-bootstrap';
 import './product-list-item.scss';
 
 const propTypes = {
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  imageUrl: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
+  price: PropTypes.shape({
+    amount: PropTypes.number,
+    currency: PropTypes.string,
+    description: PropTypes.string
+  }).isRequired,
   location: PropTypes.string,
-  price: PropTypes.number,
-  currencySymbol: PropTypes.string,
-  isFreeShipping: PropTypes.bool
+  freeShipping: PropTypes.bool
 };
 
 const defaultProps = {
-  description: '',
   location: '',
-  price: null,
-  isFreeShipping: false,
-  currencySymbol: '$'
+  freeShipping: false
 };
 
-function ProductListItem({
-  name,
-  description,
-  imageUrl,
-  location,
-  price,
-  currencySymbol,
-  isFreeShipping
-}) {
+function ProductListItem({ title, picture, price, location, freeShipping }) {
   return (
     <div className="product-list-item">
       <Row>
         <Col xs={12} sm={10} className="flex">
           <Image
-            src={imageUrl}
-            alt={name}
+            src={picture}
+            alt={title}
             className="product-list-item__image"
           />
           <div>
             <span className="product-list-item__price">
-              {currencySymbol}
-              {price}
-              {isFreeShipping && <Image src="/assets/free-shipping.png" />}
+              {price.currency}
+              {price.amount}
+              {freeShipping && <Image src="/assets/free-shipping.png" />}
             </span>
-            <span className="">{description}</span>
+            <span className="">{title}</span>
           </div>
         </Col>
         <Col xs={12} sm={2}>
