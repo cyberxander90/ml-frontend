@@ -1,7 +1,8 @@
 import React from 'react';
+import Page from 'components/page';
 
 function HomePage() {
-  return <h1>Search by products</h1>;
+  return <Page>Search by products</Page>;
 }
 
 export default HomePage;

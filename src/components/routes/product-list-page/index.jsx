@@ -7,6 +7,7 @@ import { fetchProducts } from 'actions/products';
 import { LIMIT_RESULTS } from 'constant';
 import ProductList from 'components/products/product-list';
 import Breadcrumb from 'components/breadcrumb';
+import Page from 'components/page';
 
 const frontload = async props => {
   const query = queryString.parse(props.location.search);
@@ -16,17 +17,17 @@ const frontload = async props => {
   return await props.fetchProducts(query.search);
 };
 
-function ProductListPage({ products, categories, isLoading }) {
+function ProductListPage({ products, categories, isLoading, searchTerm }) {
   if (isLoading) {
     return <p>Loading</p>;
   }
 
   return (
-    <div>
+    <Page title={`Encuentra ${searchTerm} en Mercado Libre`}>
       <h1>ProductListPage</h1>
       <Breadcrumb items={categories} />
       <ProductList products={products} />
-    </div>
+    </Page>
   );
 }
 
