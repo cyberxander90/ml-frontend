@@ -7,6 +7,7 @@
   "prettier.stylelintIntegration": true,
   "prettier.singleQuote": true,
   "beautify.ignore": [
-    "**/*.jsx"
+    "**/*.jsx",
+    "**/*.js",
   ]
 }

@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './product-list.scss';
 import ProductListItem from 'components/products/product-list-item';
 import EmptyResults from 'components/empty-results';
-import { searchProducts } from 'adapters/products';
+import { fetchProducts } from 'actions/products';
 
 class ProductList extends React.Component {
   constructor() {
@@ -36,8 +37,8 @@ class ProductList extends React.Component {
   }
 
   componentDidMount() {
-    console.log(process.env);
-    searchProducts('mochilas').then(products => this.setState(products));
+    const { fetchProducts } = this.props;
+    fetchProducts('mochila');
   }
 
   render() {
@@ -61,4 +62,9 @@ class ProductList extends React.Component {
   }
 }
 
-export default ProductList;
+export default connect(
+  null,
+  {
+    fetchProducts
+  }
+)(ProductList);
