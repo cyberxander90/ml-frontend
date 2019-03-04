@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { frontloadConnect } from 'react-frontload';
 import { findProduct } from 'actions/products';
-import ProductList from 'components/products/product-list';
+import ProductDetails from 'components/products/product-details';
 import Breadcrumb from 'components/breadcrumb';
 import Page from 'components/page';
 
@@ -18,7 +18,7 @@ function ProductDetailsPage({ isLoading, product, categories }) {
     <Page title={product.title} description={product.description}>
       <h1>ProductListPage</h1>
       <Breadcrumb items={categories} />
-      <ProductList products={product ? [product] : []} />
+      <ProductDetails {...(product ? product : {})} />
     </Page>
   );
 }

@@ -1,0 +1,51 @@
+@import "variables.scss";
+
+.product-details {
+  &__image {
+    width: 100%;
+  }
+
+  &__condition {
+    margin-top: $width-lg;
+    display: block;
+    font-size: $font-14;
+  }
+
+  &__title {
+    margin-top: $width-sm;
+    font-size: $font-24;
+  }
+
+  &__price {
+    margin-top: $width-lg;
+    font-size: $font-46;
+  }
+
+  &__buy {
+    margin-top: $width-lg;
+    max-width: 200px;
+    width: 100%;
+  }
+
+  &__header-description {
+    font-size: $font-28;
+    margin: $width-lg;
+    margin-left: 0;
+  }
+
+  &__description {
+    font-size: $font-16;
+  }
+}
+
+@media($md) {
+  .product-details {
+    &__header-description {
+      margin-left: $width-lg;
+    }
+
+    &__description {
+      margin-left: $width-lg;
+    }
+  }
+}

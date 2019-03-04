@@ -5,22 +5,14 @@ ol {
   padding: 0;
 }
 
-.text-xs {
-  font-size: 12px;
-}
-
-.text-sm {
-  font-size: 14px;
-}
-
-.text-md {
-  font-size: 18px;
-}
-
-.text-lg {
-  font-size: 24px;
-}
-
 .flex {
   display: flex;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #3483FA;
 }
