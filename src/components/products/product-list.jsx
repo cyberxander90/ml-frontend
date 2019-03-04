@@ -5,6 +5,7 @@ import './product-list.scss';
 import ProductListItem from 'components/products/product-list-item';
 import EmptyResults from 'components/empty-results';
 import { fetchProducts } from 'actions/products';
+import Breadcrumb from 'components/breadcrumb';
 
 class ProductList extends React.Component {
   constructor() {
@@ -45,25 +46,30 @@ class ProductList extends React.Component {
     const { products } = this.state;
 
     return (
-      <ul className="product-list">
-        {products.length > 0 ? (
-          products.map(product => (
-            <li className="product-list__item" key={product.id}>
-              <ProductListItem {...product} />
+      <div>
+        <Breadcrumb items={this.props.categories} />
+        <ul className="product-list">
+          {products.length > 0 ? (
+            products.map(product => (
+              <li className="product-list__item" key={product.id}>
+                <ProductListItem {...product} />
+              </li>
+            ))
+          ) : (
+            <li>
+              <EmptyResults />
             </li>
-          ))
-        ) : (
-          <li>
-            <EmptyResults />
-          </li>
-        )}
-      </ul>
+          )}
+        </ul>
+      </div>
     );
   }
 }
 
 export default connect(
-  null,
+  state => ({
+    categories: state.products.categories
+  }),
   {
     fetchProducts
   }

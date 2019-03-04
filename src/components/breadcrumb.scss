@@ -1,0 +1,28 @@
+$breadcrumb-color: #6c757d;
+
+.bread-crumb {
+  padding: 15px 0;
+
+  &__item {
+    display: inline-block;
+
+    &:not(:first-child)::before {
+      content: '<';
+      color: $breadcrumb-color;
+      padding: 0 .5rem;
+    }
+  }
+
+
+  &__link,
+  &__link:hover {
+    cursor: pointer;
+    color: $breadcrumb-color;
+    text-decoration: none;
+  }
+
+  &__current-page {
+    color: $breadcrumb-color;
+    font-weight: bold;
+  }
+}
