@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Form, FormControl, InputGroup, Button } from 'react-bootstrap';
 
 const propTypes = {
-  searchText: PropTypes.string,
+  searchTerm: PropTypes.string,
   placeholder: PropTypes.string,
   formClassName: PropTypes.string,
   onChange: PropTypes.func,
@@ -11,7 +11,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  searchText: '',
+  searchTerm: '',
   placeholder: '',
   formClassName: '',
   onChange: null,
@@ -23,18 +23,25 @@ class SearchForm extends React.Component {
     super(...arguments);
 
     this.state = {
-      searchText: props.searchText
+      searchTerm: props.searchTerm
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidUpdate(preProps) {
+    console.log('here');
+    if (preProps.searchTerm !== this.props.searchTerm) {
+      this.setState({ searchTerm: this.props.searchTerm });
+    }
+  }
+
   onChange(event) {
-    const searchText = event.target.value;
+    const searchTerm = event.target.value;
     const { onChange } = this.props;
 
-    this.setState({ searchText }, () => onChange && onChange(searchText));
+    this.setState({ searchTerm }, () => onChange && onChange(searchTerm));
   }
 
   onSubmit(event) {
@@ -42,21 +49,21 @@ class SearchForm extends React.Component {
       event.preventDefault();
     }
 
-    const { searchText } = this.state;
+    const { searchTerm } = this.state;
     const { onSubmit } = this.props;
 
-    onSubmit && onSubmit(searchText);
+    onSubmit && onSubmit(searchTerm);
   }
 
   render() {
     const { placeholder, formClassName } = this.props;
-    const { searchText } = this.state;
+    const { searchTerm } = this.state;
 
     return (
       <Form className={formClassName} onSubmit={this.onSubmit}>
         <InputGroup>
           <FormControl
-            value={searchText}
+            value={searchTerm}
             placeholder={placeholder}
             onChange={this.onChange}
           />

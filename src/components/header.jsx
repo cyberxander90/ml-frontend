@@ -8,19 +8,22 @@ import SearchForm from 'components/search-form';
 import { fetchProducts } from 'actions/products';
 
 function Header(props) {
-  const { history, location, searchText } = props;
-  console.log(props);
+  const { history, location, searchTerm } = props;
   return (
     <div className="header">
       <a className="header__link" href="/">
         Mercado Libre
       </a>
       <SearchForm
-        searchText={searchText}
+        searchTerm={searchTerm}
         formClassName="header__search-form"
-        onChange={value => console.log(value)}
         onSubmit={searchText => {
-          history.push(`/items?${qs.stringify({ search: searchText })}`);
+          const url = `/items?${qs.stringify({ search: searchText })}`;
+          const currentUrl = `${location.pathname}${location.search}`;
+          if (url === currentUrl) {
+            return;
+          }
+          history.push(url);
           if (location.pathname == '/items') {
             props.fetchProducts(searchText);
           }
@@ -32,7 +35,7 @@ function Header(props) {
 
 export default connect(
   ({ products }) => ({
-    searchText: products.searchText
+    searchTerm: products.searchTerm
   }),
   { fetchProducts }
 )(withRouter(Header));

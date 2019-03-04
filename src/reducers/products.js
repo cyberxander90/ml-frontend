@@ -14,7 +14,9 @@ export default function(state = initialState, action) {
     case TYPES.LOADING_PRODUCTS:
       return {
         ...state,
-        isLoading: true
+        categories: [],
+        isLoading: true,
+        searchTerm: action.payload.searchTerm
       };
     case TYPES.FETCH_PRODUCTS:
       return {

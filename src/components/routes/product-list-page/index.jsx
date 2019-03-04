@@ -32,7 +32,6 @@ function ProductListPage({ products, categories, isLoading }) {
 
 export default connect(
   ({ products }) => {
-    console.log('hhhhh');
     return {
       isLoading: products.isLoading,
       categories: products.categories,
