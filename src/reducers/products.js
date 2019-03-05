@@ -8,17 +8,29 @@ const initialState = {
   selectedProduct: null,
   isLoading: false,
   searchTerm: '',
-  id: null
+  id: null,
+  error: null
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case TYPES.FAIL_LOADING_PRODUCTS:
+      if (state.id != action.payload.id) {
+        return state;
+      }
+      return {
+        ...state,
+        ...action.payload,
+        isLoading: false
+      };
+
     case TYPES.LOADING_PRODUCTS:
       return {
         ...state,
         ...action.payload,
         categories: [],
-        isLoading: true
+        isLoading: true,
+        error: null
       };
 
     case TYPES.FETCH_PRODUCTS:

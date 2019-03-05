@@ -1,0 +1,13 @@
+.empty-results {
+  display: flex;
+  padding: 50px;
+
+  &__img {
+    width: 100px;
+    margin-right: 30px;
+  }
+
+  &__options {
+    list-style: circle;
+  }
+}

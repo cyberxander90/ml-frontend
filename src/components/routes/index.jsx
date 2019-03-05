@@ -23,12 +23,20 @@ const LoadableProductDetailsPage = Loadable({
   modules: ['ProductDetailsPage']
 });
 
+const LoadablePageNotFound = Loadable({
+  loader: () =>
+    import(/* webpackChunkName: "PageNotFound" */ 'components/page-not-found'),
+  loading: () => null,
+  modules: ['PageNotFound']
+});
+
 function Routes() {
   return (
     <Switch>
       <Route exact path="/" component={LoadableHomePage} />
       <Route exact path="/items" component={LoadableProductListPage} />
       <Route exact path="/item/:id" component={LoadableProductDetailsPage} />
+      <Route component={LoadablePageNotFound} />
     </Switch>
   );
 }

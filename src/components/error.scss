@@ -1,0 +1,20 @@
+.error {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #777777;
+  margin-top: 40px;
+
+  &__img {
+    width: 150px;
+    opacity: .5;
+  }
+
+  &__status {
+    font-size: 60px;
+  }
+
+  &__message {
+    font-size: 20px;
+  }
+}

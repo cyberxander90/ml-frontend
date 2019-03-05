@@ -6,30 +6,44 @@ import { findProduct } from 'actions/products';
 import ProductDetails from 'components/products/product-details';
 import Breadcrumb from 'components/breadcrumb';
 import Page from 'components/page';
+import Error from 'components/error';
 
 const frontload = async props => {
-  const product = await props.findProduct(props.match.params.id);
+  await props.findProduct(props.match.params.id);
 };
 
-function ProductDetailsPage({ product, categories }) {
-  if (!product) {
-    return null;
+function ProductDetailsPage({ product, categories, error }) {
+  let content,
+    title,
+    description = null;
+
+  if (error) {
+    content = <Error status={error.status} message={error.data.message} />;
+  } else if (product) {
+    content = (
+      <React.Fragment>
+        <Breadcrumb items={categories} />
+        <Col>
+          <ProductDetails {...product} />
+        </Col>
+      </React.Fragment>
+    );
+    title = product.title;
+    description = product.description;
   }
+
   return (
-    <Page title={product.title} description={product.description}>
-      <Breadcrumb items={categories} />
-      <Col>
-        <ProductDetails {...(product ? product : {})} />
-      </Col>
+    <Page title={title} description={description}>
+      {content}
     </Page>
   );
 }
 
 export default connect(
-  ({ products }, ownProps) => ({
+  ({ products: { selectedProduct, products, error } }, ownProps) => ({
     categories: products.categories,
-    product:
-      products.selectedProduct || products.products[ownProps.match.params.id]
+    product: selectedProduct || products[ownProps.match.params.id],
+    error: error && error.response
   }),
   { findProduct }
 )(

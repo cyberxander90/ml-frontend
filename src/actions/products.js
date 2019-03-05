@@ -14,17 +14,23 @@ export const fetchProducts = (searchTerm, limit = LIMIT_RESULTS) =>
     });
 
     const query = qs.stringify({ q: searchTerm, limit });
-    const { data: { items, categories } } = await api.get(`/items?${query}`);
-
-    dispatch({
-      type: TYPES.FETCH_PRODUCTS,
-      payload: {
-        products: items,
-        categories,
-        searchTerm,
-        id
-      }
-    });
+    try {
+      const { data: { items, categories } } = await api.get(`/items?${query}`);
+      dispatch({
+        type: TYPES.FETCH_PRODUCTS,
+        payload: {
+          products: items,
+          categories,
+          searchTerm,
+          id
+        }
+      });
+    } catch (error) {
+      dispatch({
+        type: TYPES.FAIL_LOADING_PRODUCTS,
+        payload: { error, id }
+      });
+    }
   };
 
 // prettier-ignore
@@ -36,14 +42,24 @@ export const findProduct = productId => async (dispatch, getState, api) => {
     payload: { searchTerm: '', id }
   });
 
-  const { data: { item, categories } } = await api.get(`/item/${productId}`);
-
-  dispatch({
-    type: TYPES.FIND_PRODUCT,
-    payload: {
-      selectedProduct: item,
-      categories,
-      id
-    }
-  });
+  await api.get(`/item/${productId}`)
+    .then(response => {
+      console.log(response)
+      const { data: { item, categories } } = response ;
+      return dispatch({
+        type: TYPES.FIND_PRODUCT,
+        payload: {
+          selectedProduct: item,
+          categories,
+          id
+        }
+      });
+    })
+    .catch(error => {
+      console.log(error)
+      return dispatch({
+        type: TYPES.FAIL_LOADING_PRODUCTS,
+        payload: { error, id }
+      });
+    })
 };
