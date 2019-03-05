@@ -13,16 +13,6 @@
     margin: 5px 0 $width-lg 0;
   }
 
-  &__link {
-    font-size: $font-18;
-    color: #666666;
-
-    &:hover {
-      color: #333333;
-      text-decoration: none;
-    }
-  }
-
   &__location {
     display: block;
     margin-top: 10px;

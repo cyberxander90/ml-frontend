@@ -8,10 +8,10 @@ import Breadcrumb from 'components/breadcrumb';
 import Page from 'components/page';
 
 const frontload = async props => {
-  return await props.findProduct(props.match.params.id);
+  const product = await props.findProduct(props.match.params.id);
 };
 
-function ProductDetailsPage({ isLoading, product, categories }) {
+function ProductDetailsPage({ product, categories }) {
   if (!product) {
     return null;
   }
@@ -26,15 +26,11 @@ function ProductDetailsPage({ isLoading, product, categories }) {
 }
 
 export default connect(
-  ({ products }, ownProps) => {
-    const result = {
-      isLoading: products.isLoading,
-      categories: products.categories,
-      product:
-        products.selectedProduct || products.products[ownProps.match.params.id]
-    };
-    return result;
-  },
+  ({ products }, ownProps) => ({
+    categories: products.categories,
+    product:
+      products.selectedProduct || products.products[ownProps.match.params.id]
+  }),
   { findProduct }
 )(
   frontloadConnect(frontload, {

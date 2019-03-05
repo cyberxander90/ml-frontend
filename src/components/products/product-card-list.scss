@@ -1,0 +1,14 @@
+@import 'variables.scss';
+
+.product-card-list {
+  &__title {
+    font-size: $font-24;
+    margin-top: 30px;
+  }
+
+  &__list {
+    >li {
+      display: inline-block;
+    }
+  }
+}

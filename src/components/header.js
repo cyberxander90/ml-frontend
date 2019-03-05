@@ -10,7 +10,7 @@ import { fetchProducts } from 'actions/products';
 function Header(props) {
   const { history, location, searchTerm } = props;
   return (
-    <div className="header">
+    <header className="header">
       <a className="header__link" href="/">
         Mercado Libre
       </a>
@@ -29,7 +29,7 @@ function Header(props) {
           }
         }}
       />
-    </div>
+    </header>
   );
 }
 

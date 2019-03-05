@@ -49,7 +49,7 @@ function ProductListItem({
               {...price}
               freeShipping={freeShipping}
             />
-            <Link to={linkTo} className="product-list-item__link">
+            <Link to={linkTo} className="product-link">
               {title}
             </Link>
           </div>

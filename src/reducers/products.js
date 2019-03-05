@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import * as TYPES from 'actions/types';
+import { setVisitProduct } from 'services/products';
 
 const initialState = {
   categories: [],
@@ -19,6 +20,7 @@ export default function(state = initialState, action) {
         categories: [],
         isLoading: true
       };
+
     case TYPES.FETCH_PRODUCTS:
       if (state.id != action.payload.id) {
         return state;
@@ -31,10 +33,12 @@ export default function(state = initialState, action) {
         isLoading: false,
         products: _.mapKeys(action.payload.products, 'id')
       };
+
     case TYPES.FIND_PRODUCT:
       if (state.id != action.payload.id) {
         return state;
       }
+      setVisitProduct(action.payload.selectedProduct);
 
       return {
         ...state,
@@ -43,6 +47,7 @@ export default function(state = initialState, action) {
         isLoading: false,
         searchTerm: ''
       };
+
     default:
       return state;
   }

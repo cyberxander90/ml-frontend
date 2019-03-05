@@ -16,8 +16,6 @@ export const fetchProducts = (searchTerm, limit = LIMIT_RESULTS) =>
     const query = qs.stringify({ q: searchTerm, limit });
     const { data: { items, categories } } = await api.get(`/items?${query}`);
 
-    console.log(`searchTerm: ${searchTerm}, stateSearchTerm: ${getState()}`)
-    console.log(getState().products.searchTerm);
     dispatch({
       type: TYPES.FETCH_PRODUCTS,
       payload: {
@@ -29,6 +27,7 @@ export const fetchProducts = (searchTerm, limit = LIMIT_RESULTS) =>
     });
   };
 
+// prettier-ignore
 export const findProduct = productId => async (dispatch, getState, api) => {
   const id = shortId.generate();
 
@@ -37,9 +36,8 @@ export const findProduct = productId => async (dispatch, getState, api) => {
     payload: { searchTerm: '', id }
   });
 
-  const {
-    data: { item, categories }
-  } = await api.get(`/item/${productId}`);
+  const { data: { item, categories } } = await api.get(`/item/${productId}`);
+
   dispatch({
     type: TYPES.FIND_PRODUCT,
     payload: {
