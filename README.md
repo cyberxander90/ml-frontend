@@ -1,43 +1,45 @@
 # Mercado Libre Test - React APP
 
-React APP (boilerplate with CRA) for Mercado Libre Test.
-You should run the [Mercado Libre Test API](https://github.com/cyberxander90/ml-api) first.
+Mercado Libre Frontend Test App built with [React](https://reactjs.org/).
 
-# Run
+This project depends on the [Mercado Libre Test - API](https://github.com/cyberxander90/ml-api), so you must have it running.
 
-## Install Dependencies
+## Run
 
+### Install Dependencies
 ```
 > npm install
 ```
 
-## Run For Development
-
+### Run for development
 ```
 > npm start
 ```
 
-Default **start** for **CRA** (http://localhost:3000).
+Default **start** for [CRA](https://github.com/facebook/create-react-app)
 
-## Run SPA
+(http://localhost:3000).
 
+### Run build as SPA
 ```
 > npm serve
 ```
 
-Build the project and serve the build files for http using **http-server** (http://localhost:8080).
+Build the project and serve the build files for http using [http-server](https://github.com/indexzero/http-server).
 
-## Run SSR
+(http://localhost:8080)
 
+### Run SSR
 ```
 > npm serve-ssr
 ```
 
-Build the project and start a simple express server to serve the app with **SSR** (http://localhost:3000).
+Build the project and start a simple [express](http://expressjs.com/) server to serve the app with **SSR**
+
+(http://localhost:3000).
 **This is the preferred way to test the App**.
 
-# Env
-
+## Env
 You can setup your **.env** file to override the defaults props
 
 - PORT=3001
