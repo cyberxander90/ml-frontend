@@ -15,7 +15,7 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case TYPES.FAIL_LOADING_PRODUCTS:
-      if (state.id != action.payload.id) {
+      if (state.id !== action.payload.id) {
         return state;
       }
       return {
@@ -34,7 +34,7 @@ export default function(state = initialState, action) {
       };
 
     case TYPES.FETCH_PRODUCTS:
-      if (state.id != action.payload.id) {
+      if (state.id !== action.payload.id) {
         return state;
       }
 
@@ -47,7 +47,7 @@ export default function(state = initialState, action) {
       };
 
     case TYPES.FIND_PRODUCT:
-      if (state.id != action.payload.id) {
+      if (state.id !== action.payload.id) {
         return state;
       }
       setVisitProduct(action.payload.selectedProduct);

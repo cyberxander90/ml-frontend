@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -7,18 +6,6 @@ import { Link } from 'react-router-dom';
 
 import './product-list-item.scss';
 import Price from 'components/price';
-
-const propTypes = {
-  title: PropTypes.string.isRequired,
-  picture: PropTypes.string.isRequired,
-  price: PropTypes.shape({
-    amount: PropTypes.number,
-    currency: PropTypes.string,
-    description: PropTypes.string
-  }).isRequired,
-  location: PropTypes.string,
-  freeShipping: PropTypes.bool
-};
 
 const defaultProps = {
   location: 'Capital Federal',
@@ -64,7 +51,6 @@ function ProductListItem({
   );
 }
 
-ProductListItem.propTypes = propTypes;
 ProductListItem.defaultProps = defaultProps;
 
 export default ProductListItem;

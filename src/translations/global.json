@@ -1,0 +1,90 @@
+{
+  "offline": [
+    "You are offline, please try to reconnect",
+    "Esta desconectado, por favor intente reconectarse"
+  ],
+  "new": [
+    "New - ",
+    "Nuevo - "
+  ],
+  "sold": {
+    "plural": [
+      "sold",
+      "vendidos"
+    ],
+    "singular": [
+      "sold",
+      "vendido"
+    ]
+  },
+  "buy": [
+    "Buy",
+    "Comprar"
+  ],
+  "product": {
+    "description": [
+      "Product Description",
+      "Descripcion del Producto"
+    ],
+    "title": [
+      "Find ${value}",
+      "Encuentra ${value}"
+    ]
+  },
+  "header": [
+    "The largest online shopping and selling community in Latin America.",
+    "La comunidad de compra y venta online más grande de América Latina."
+  ],
+  "lastViewedProducts": [
+    "Last viewed products",
+    "Ultimos productos vistos"
+  ],
+  "topVisitedProducts": [
+    "Most visited products",
+    "Productos mas visitados"
+  ],
+  "emptyResults": {
+    "header": [
+      "No results",
+      "No hay resultados"
+    ],
+    "li1": [
+      "Check the spelling of the word.",
+      "Revisa la ortografía de la palabra."
+    ],
+    "li2": [
+      "Use more generic words or fewer words.",
+      "Utiliza palabras más genéricas o menos palabras."
+    ]
+  },
+  "error": {
+    "unexpected": [
+      "Something went wrong",
+      "Algo salió mal"
+    ],
+    "pageNotFound": [
+      "Page not found",
+      "Página no encontrada"
+    ]
+  },
+  "placeholder": {
+    "find": [
+      "Never stop looking",
+      "Nunca dejes de buscar"
+    ]
+  },
+  "speech": {
+    "text": [
+      "Speech Recognition",
+      "Reconocimiento de voz"
+    ],
+    "accept": [
+      "Accept",
+      "Aceptar"
+    ],
+    "cancel": [
+      "Cancel",
+      "Cancelar"
+    ]
+  }
+}

@@ -13,7 +13,7 @@ import { getProductOptions } from 'services/products';
 
 const defaultProps = {
   searchTerm: '',
-  placeholder: 'Nunca dejes de buscar'
+  placeholder: ''
 };
 
 class SearchForm extends React.Component {
@@ -44,7 +44,8 @@ class SearchForm extends React.Component {
     const searchTerm = event.target.value;
     const { onChange } = this.props;
 
-    const hastToFindOptions = searchTerm.trim() != this.state.searchTerm.trim();
+    const hastToFindOptions =
+      searchTerm.trim() !== this.state.searchTerm.trim();
     const newState = { searchTerm };
     if (hastToFindOptions) {
       newState.options = [];

@@ -1,13 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import shortId from 'shortid';
 import './breadcrumb.scss';
-
-const propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.object, PropTypes.string])
-  )
-};
 
 const defaultProps = {
   items: []
@@ -46,7 +39,6 @@ function Breadcrumb(props) {
   );
 }
 
-Breadcrumb.propTypes = propTypes;
 Breadcrumb.defaultProps = defaultProps;
 
 export default Breadcrumb;

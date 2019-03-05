@@ -1,4 +1,5 @@
 import React from 'react';
+import { Translate } from 'react-localize-redux';
 
 import Error from 'components/error';
 
@@ -15,7 +16,11 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      return <Error status="Something went wrong" />;
+      return (
+        <Translate>
+          {({ translate }) => <Error status={translate('error.unexpected')} />}
+        </Translate>
+      );
     }
 
     return this.props.children;

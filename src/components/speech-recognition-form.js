@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import SpeechRecognition from 'react-speech-recognition';
+import { Translate } from 'react-localize-redux';
 
 import './speech-recognition-form.scss';
 
@@ -53,7 +54,9 @@ class SpeechRecognitionForm extends React.Component {
         )}
         <Modal show={this.state.isModalOpen} onHide={this.onCancel}>
           <Modal.Header>
-            <Modal.Title>Speech Recognition</Modal.Title>
+            <Modal.Title>
+              <Translate id="speech.text" />
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Image
@@ -65,10 +68,10 @@ class SpeechRecognitionForm extends React.Component {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.onCancel}>
-              Close
+              <Translate id="speech.cancel" />
             </Button>
             <Button variant="primary" onClick={this.onAccept}>
-              Accept
+              <Translate id="speech.accept" />
             </Button>
           </Modal.Footer>
         </Modal>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'react-bootstrap/Image';
+import { Translate } from 'react-localize-redux';
 
 import './empty-results.scss';
 
@@ -12,10 +13,16 @@ function EmptyResults() {
         className="empty-results__img"
       />
       <div>
-        <h3>No results</h3>
+        <h3>
+          <Translate id="emptyResults.header" />
+        </h3>
         <ul className="empty-results__options">
-          <li>Revisa la ortografía de la palabra.</li>
-          <li>Utiliza palabras más genéricas o menos palabras.</li>
+          <li>
+            <Translate id="emptyResults.li1" />
+          </li>
+          <li>
+            <Translate id="emptyResults.li2" />
+          </li>
         </ul>
       </div>
     </div>

@@ -1,13 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import './product-list.scss';
 import ProductListItem from 'components/products/product-list-item';
 import EmptyResults from 'components/empty-results';
-
-const propTypes = {
-  products: PropTypes.arrayOf(PropTypes.object)
-};
 
 const defaultProps = {
   products: []
@@ -31,7 +26,6 @@ function ProductList({ products }) {
   );
 }
 
-ProductList.propTypes = propTypes;
 ProductList.defaultProps = defaultProps;
 
 export default ProductList;

@@ -1,5 +1,6 @@
 import React from 'react';
 import Page from 'components/page';
+import { Translate } from 'react-localize-redux';
 
 import { getTopViewProducts, getLastViewProducts } from 'services/products';
 import ProductCardList from 'components/products/product-card-list';
@@ -9,19 +10,21 @@ function HomePage() {
   const lastViewProducts = getLastViewProducts();
 
   return (
-    <Page>
-      <h1 className="header-home">
-        La comunidad de compra y venta online más grande de América Latina.
-      </h1>
-      <ProductCardList
-        title="Ultimos productos vistos"
-        products={lastViewProducts}
-      />
-      <ProductCardList
-        title="Los productos mas visitados"
-        products={topViewProducts}
-      />
-    </Page>
+    <Translate>
+      {({ translate }) => (
+        <Page>
+          <h1 className="header-home">{translate('header')}</h1>
+          <ProductCardList
+            title={translate('lastViewedProducts')}
+            products={lastViewProducts}
+          />
+          <ProductCardList
+            title={translate('topVisitedProducts')}
+            products={topViewProducts}
+          />
+        </Page>
+      )}
+    </Translate>
   );
 }
 

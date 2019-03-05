@@ -3,6 +3,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Offline } from 'react-detect-offline';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { withLocalize, Translate } from 'react-localize-redux';
+import globalTranslations from 'translations/global.json';
 
 import './app.scss';
 import Header from 'components/header';
@@ -10,35 +13,65 @@ import Routes from 'components/routes';
 import LoadingBar from 'components/loading-bar';
 import ErrorBoundary from 'components/error-boundary';
 
-function App() {
-  const bootstrapLayout = {
-    xs: 12,
-    sm: { span: 10, offset: 1 },
-    lg: { span: 8, offset: 2 }
-  };
+class App extends React.Component {
+  constructor() {
+    super(...arguments);
 
-  return (
-    <ErrorBoundary>
-      <Offline polling={false}>
-        <div className="alert-important">
-          You are offline, please try to reconnect
-        </div>
-      </Offline>
-      <Container fluid className="app">
-        <Row className="app__top-bar">
-          <Col {...bootstrapLayout}>
-            <Header />
-          </Col>
-        </Row>
-        <LoadingBar />
-        <Row className="app__content">
-          <Col {...bootstrapLayout}>
-            <Routes />
-          </Col>
-        </Row>
-      </Container>
-    </ErrorBoundary>
-  );
+    this.props.initialize({
+      languages: [
+        { name: 'English', code: 'en' },
+        { name: 'Spanish', code: 'es' }
+      ],
+      translation: globalTranslations,
+      options: { renderToStaticMarkup }
+    });
+  }
+
+  renderLanguageSelector() {
+    const { languages, setActiveLanguage } = this.props;
+    return (
+      <ul className="selector">
+        {languages.map(lang => (
+          <li key={lang.code}>
+            <button type="button" onClick={() => setActiveLanguage(lang.code)}>
+              {lang.name}
+            </button>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  render() {
+    const bootstrapLayout = {
+      xs: 12,
+      sm: { span: 10, offset: 1 },
+      lg: { span: 8, offset: 2 }
+    };
+
+    return (
+      <ErrorBoundary>
+        <Offline polling={false}>
+          <div className="alert-important">
+            <Translate id="offline" />
+          </div>
+        </Offline>
+        <Container fluid className="app">
+          <Row className="app__top-bar">
+            <Col {...bootstrapLayout}>
+              <Header />
+            </Col>
+          </Row>
+          <LoadingBar />
+          <Row className="app__content">
+            <Col {...bootstrapLayout}>
+              <Routes />
+            </Col>
+          </Row>
+        </Container>
+      </ErrorBoundary>
+    );
+  }
 }
 
-export default App;
+export default withLocalize(App);

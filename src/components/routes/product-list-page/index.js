@@ -8,10 +8,11 @@ import { LIMIT_RESULTS } from 'constant';
 import ProductList from 'components/products/product-list';
 import Breadcrumb from 'components/breadcrumb';
 import Page from 'components/page';
+import { Translate } from 'react-localize-redux';
 
 const frontload = async props => {
   const query = queryString.parse(props.location.search);
-  if (query.search == props.searchTerm) {
+  if (query.search === props.searchTerm) {
     return;
   }
   await props.fetchProducts(query.search);
@@ -23,10 +24,14 @@ function ProductListPage({ products, categories, isLoading, searchTerm }) {
   }
 
   return (
-    <Page title={`Encuentra ${searchTerm} en Mercado Libre`}>
-      <Breadcrumb items={categories} />
-      <ProductList products={products} />
-    </Page>
+    <Translate>
+      {({ translate }) => (
+        <Page title={translate('product.title', { value: searchTerm })}>
+          <Breadcrumb items={categories} />
+          <ProductList products={products} />
+        </Page>
+      )}
+    </Translate>
   );
 }
 
