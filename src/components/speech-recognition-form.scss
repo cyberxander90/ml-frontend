@@ -1,0 +1,59 @@
+.speech {
+  &__icon {
+    cursor: pointer;
+  }
+
+  &__active-icon {
+    border-radius: 50%;
+    animation-name: animate-speech;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+}
+
+@keyframes animate-speech {
+  0% {
+    background-color: #DFDFEB;
+  }
+
+  10% {
+    background-color: #C6CBDE;
+  }
+
+  20% {
+    background-color: #B3BAD6;
+  }
+
+  30% {
+    background-color: #9DACCD;
+  }
+
+  40% {
+    background-color: #889FC8;
+  }
+
+  50% {
+    background-color: #5284B7;
+  }
+
+  60% {
+    background-color: #889FC8;
+  }
+
+  70% {
+    background-color: #9DACCD;
+  }
+
+  80% {
+    background-color: #B3BAD6;
+  }
+
+  90% {
+    background-color: #C6CBDE;
+  }
+
+  100% {
+    background-color: #DFDFEB;
+  }
+}

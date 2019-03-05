@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, FormControl, InputGroup, Button } from 'react-bootstrap';
 
 import './search-form.scss';
+import SpeechRecognitionForm from 'components/speech-recognition-form';
 
 const defaultProps = {
   searchTerm: '',
@@ -18,11 +19,12 @@ class SearchForm extends React.Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onSelectSearchTerm = this.onSelectSearchTerm.bind(this);
   }
 
   componentDidUpdate(preProps) {
-    console.log('here');
     if (preProps.searchTerm !== this.props.searchTerm) {
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ searchTerm: this.props.searchTerm });
     }
   }
@@ -44,20 +46,42 @@ class SearchForm extends React.Component {
     onSubmit && searchTerm && onSubmit(searchTerm);
   }
 
+  onSelectSearchTerm(searchTerm) {
+    searchTerm = searchTerm.trim();
+    if (!searchTerm) {
+      return;
+    }
+
+    const { onSubmit } = this.props;
+    this.setState({ searchTerm }, () => onSubmit && onSubmit(searchTerm));
+  }
+
   render() {
     const { placeholder, formClassName } = this.props;
     const { searchTerm } = this.state;
 
     return (
-      <Form className={`search-form ${formClassName}`} onSubmit={this.onSubmit}>
+      <Form
+        action="/items"
+        className={`search-form ${formClassName}`}
+        onSubmit={this.onSubmit}
+      >
         <InputGroup>
+          <p>{this.props.transcript}</p>
           <FormControl
-            className="search-form__input"
+            className="form-control search-form__input"
             value={searchTerm}
             placeholder={placeholder}
             onChange={this.onChange}
+            name="search"
+            type="text"
+            autoFocus
           />
           <InputGroup.Append>
+            {/* <SpeechRecognitionForm /> */}
+            <InputGroup.Text className="search-form__speech">
+              <SpeechRecognitionForm onSubmit={this.onSelectSearchTerm} />
+            </InputGroup.Text>
             <Button type="submit" className="search-form__submit">
               Search
             </Button>

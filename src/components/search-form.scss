@@ -4,6 +4,17 @@
 
   &__input {
     font-size: $font-18;
+    border-right: none;
+  }
+
+  &__speech {
+    padding: 0px;
+    background: white;
+
+    >img {
+      width: 34px;
+      height: 29px;
+    }
   }
 
   &__submit {
