@@ -1,12 +1,10 @@
 import React from 'react';
-import {
-  Form,
-  FormControl,
-  InputGroup,
-  Button,
-  ListGroup,
-  Image
-} from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Image from 'react-bootstrap/Image';
 
 import './search-form.scss';
 import SpeechRecognitionForm from 'components/speech-recognition-form';

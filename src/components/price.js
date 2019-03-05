@@ -1,5 +1,7 @@
 import React from 'react';
-import { Image, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import Image from 'react-bootstrap/Image';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 import './price.scss';
 

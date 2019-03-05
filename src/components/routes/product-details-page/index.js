@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { frontloadConnect } from 'react-frontload';
-import { Col } from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
 import { findProduct } from 'actions/products';
 import ProductDetails from 'components/products/product-details';
 import Breadcrumb from 'components/breadcrumb';

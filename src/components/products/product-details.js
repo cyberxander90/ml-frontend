@@ -1,5 +1,8 @@
 import React from 'react';
-import { Row, Col, Image, Button } from 'react-bootstrap';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
+import Button from 'react-bootstrap/Button';
 
 import './product-details.scss';
 import Price from 'components/price';
