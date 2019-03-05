@@ -27,7 +27,7 @@ ol {
 .btn:focus,
 .btn:active {
   border-color: #ced4da;
-  box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.39) !important;
+  box-shadow: none;
 }
 
 .header-home {
@@ -46,7 +46,7 @@ ol {
   }
 }
 
-noscript {
+.alert-important {
   display: block;
   text-align: center;
   color: white;

@@ -1,5 +1,7 @@
 import store from 'store';
 import _ from 'lodash';
+import axios from 'axios';
+import qs from 'qs';
 
 export const setVisitProduct = product => {
   const products = store.get('products') || {};
@@ -22,4 +24,11 @@ export const getTopViewProducts = (limit = 3) => {
 export const getLastViewProducts = (limit = 3) => {
   const products = Object.values(store.get('products') || {});
   return _.takeRight(_.sortBy(products, ['lastVisit']), limit).reverse();
+};
+
+export const getProductOptions = (searchTerm, limit = 6) => {
+  const query = qs.stringify({ q: searchTerm, limit });
+  return axios.get(
+    `https://http2.mlstatic.com/resources/sites/MLU/autosuggest?&api_version=2&${query}`
+  );
 };

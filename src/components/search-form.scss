@@ -36,4 +36,41 @@
       border-color: #ced4da !important;
     }
   }
+
+  &__options {
+    position: absolute;
+    width: 100%;
+    display: none;
+    top: 100%;
+    z-index: 1;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+
+    &--visible {
+      display: block
+    }
+
+    >div {
+      padding: 0;
+    }
+  }
+
+  &__option-item {
+    cursor: pointer;
+    padding: .75rem 1.25rem;
+
+    &:hover {
+      background-color: #DADADA;
+      // color: white;
+    }
+  }
+
+  &__option-value {
+    margin-left: 20px;
+  }
+
+  &__option-img {
+    width: 18px;
+  }
 }

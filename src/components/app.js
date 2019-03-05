@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { Offline } from 'react-detect-offline';
 
 import './app.scss';
 import Header from 'components/header';
@@ -14,19 +15,26 @@ function App() {
   };
 
   return (
-    <Container fluid className="app">
-      <Row className="app__top-bar">
-        <Col {...bootstrapLayout}>
-          <Header />
-        </Col>
-      </Row>
-      <LoadingBar />
-      <Row className="app__content">
-        <Col {...bootstrapLayout}>
-          <Routes />
-        </Col>
-      </Row>
-    </Container>
+    <React.Fragment>
+      <Offline>
+        <div className="alert-important">
+          You are offline, please try to reconnect
+        </div>
+      </Offline>
+      <Container fluid className="app">
+        <Row className="app__top-bar">
+          <Col {...bootstrapLayout}>
+            <Header />
+          </Col>
+        </Row>
+        <LoadingBar />
+        <Row className="app__content">
+          <Col {...bootstrapLayout}>
+            <Routes />
+          </Col>
+        </Row>
+      </Container>
+    </React.Fragment>
   );
 }
 
