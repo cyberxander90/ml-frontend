@@ -34,6 +34,7 @@ Build the project and serve the build files for http using `http-server` (http:/
 ```
 
 Build the project and start a simple express server to serve the app with `SSR` (http://localhost:3000).
+**This is the preferred way to test the App**.
 
 # Env
 

@@ -108,7 +108,7 @@ class SearchForm extends React.Component {
     }
 
     getProductOptions(searchTerm).then(({ data }) => {
-      if (this.state.searchTerm !== searchTerm) {
+      if (this.state.searchTerm.trim() !== searchTerm) {
         return;
       }
       this.setState({

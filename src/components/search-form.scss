@@ -5,6 +5,10 @@
   &__input {
     font-size: $font-18;
     border-right: none;
+
+    &::placeholder {
+      color: #C0C0C0;
+    }
   }
 
   &__speech {
