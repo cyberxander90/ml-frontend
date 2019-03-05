@@ -19,12 +19,11 @@ const frontload = async props => {
 
 function ProductListPage({ products, categories, isLoading, searchTerm }) {
   if (isLoading) {
-    return <p>Loading</p>;
+    return null;
   }
 
   return (
     <Page title={`Encuentra ${searchTerm} en Mercado Libre`}>
-      <h1>ProductListPage</h1>
       <Breadcrumb items={categories} />
       <ProductList products={products} />
     </Page>

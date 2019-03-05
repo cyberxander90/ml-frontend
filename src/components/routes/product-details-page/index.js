@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { frontloadConnect } from 'react-frontload';
+import { Col } from 'react-bootstrap';
 import { findProduct } from 'actions/products';
 import ProductDetails from 'components/products/product-details';
 import Breadcrumb from 'components/breadcrumb';
@@ -11,14 +12,15 @@ const frontload = async props => {
 };
 
 function ProductDetailsPage({ isLoading, product, categories }) {
-  if (isLoading && !product) {
-    return <h1>Loading Prodcut</h1>;
+  if (!product) {
+    return null;
   }
   return (
     <Page title={product.title} description={product.description}>
-      <h1>ProductListPage</h1>
       <Breadcrumb items={categories} />
-      <ProductDetails {...(product ? product : {})} />
+      <Col>
+        <ProductDetails {...(product ? product : {})} />
+      </Col>
     </Page>
   );
 }

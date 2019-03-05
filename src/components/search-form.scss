@@ -1,0 +1,28 @@
+@import 'variables.scss';
+
+.search-form {
+
+  &__input {
+    font-size: $font-18;
+  }
+
+  &__submit {
+    background-image: url('/assets/search.png');
+
+    background-repeat: no-repeat;
+    background-size: 60% 60%;
+    width: 40px;
+    color: transparent;
+    background-color: #EEEEEE;
+    border-color: #ced4da;
+    background-position-x: center;
+    background-position-y: center;
+
+    &:hover,
+    &:active {
+      color: transparent !important;
+      background-color: #EEEEEE !important;
+      border-color: #ced4da !important;
+    }
+  }
+}

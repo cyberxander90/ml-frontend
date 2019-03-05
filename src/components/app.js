@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import './app.scss';
 import Header from 'components/header';
 import Routes from 'components/routes';
+import LoadingBar from 'components/loading-bar';
 
 function App() {
   const bootstrapLayout = {
@@ -17,6 +18,9 @@ function App() {
       <Row className="app__top-bar">
         <Col {...bootstrapLayout}>
           <Header />
+        </Col>
+        <Col xs={12}>
+          <LoadingBar />
         </Col>
       </Row>
       <Row className="app__content">

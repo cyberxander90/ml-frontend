@@ -19,9 +19,7 @@ function renderBreadcrumbItem(item, isLast) {
       {isLast ? (
         <span className="bread-crumb__current-page">{item.text}</span>
       ) : (
-        <a href={item.linkTo || ''} role="button" className="bread-crumb__link">
-          {item.text}
-        </a>
+        <span className="bread-crumb__link">{item.text}</span>
       )}
     </li>
   );

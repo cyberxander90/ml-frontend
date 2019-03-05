@@ -4,6 +4,7 @@ import { Image, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import './product-list-item.scss';
+import Price from 'components/price';
 
 const propTypes = {
   title: PropTypes.string.isRequired,
@@ -18,7 +19,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  location: '',
+  location: 'Capital Federal',
   freeShipping: false
 };
 
@@ -34,7 +35,7 @@ function ProductListItem({
   return (
     <div className="product-list-item">
       <Row>
-        <Col xs={12} sm={10} className="flex">
+        <Col xs={12} md={10} className="product-list-item__info">
           <Link to={linkTo}>
             <Image
               src={picture}
@@ -43,17 +44,17 @@ function ProductListItem({
             />
           </Link>
           <div>
-            <span className="product-list-item__price">
-              {price.currency}
-              {price.amount}
-              {freeShipping && <Image src="/assets/free-shipping.png" />}
-            </span>
-            <Link to={linkTo}>
-              <span className="">{title}</span>
+            <Price
+              className="product-list-item__price"
+              {...price}
+              freeShipping={freeShipping}
+            />
+            <Link to={linkTo} className="product-list-item__link">
+              {title}
             </Link>
           </div>
         </Col>
-        <Col xs={12} sm={2}>
+        <Col xs={12} md={2}>
           <span className="product-list-item__location">{location}</span>
         </Col>
       </Row>

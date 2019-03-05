@@ -1,18 +1,18 @@
-$breadcrumb-color: #6c757d;
+@import 'variables.scss';
 
 .bread-crumb {
-  padding: 15px 0;
+  padding: $width-sm 0;
+  font-size: $font-14;
 
   &__item {
     display: inline-block;
 
     &:not(:first-child)::before {
-      content: '<';
+      content: '>';
       color: $breadcrumb-color;
       padding: 0 .5rem;
     }
   }
-
 
   &__link,
   &__link:hover {

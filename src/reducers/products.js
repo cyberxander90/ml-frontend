@@ -5,8 +5,9 @@ const initialState = {
   categories: [],
   products: {},
   selectedProduct: null,
-  isLoading: true,
-  searchTerm: ''
+  isLoading: false,
+  searchTerm: '',
+  id: null
 };
 
 export default function(state = initialState, action) {
@@ -14,25 +15,31 @@ export default function(state = initialState, action) {
     case TYPES.LOADING_PRODUCTS:
       return {
         ...state,
+        ...action.payload,
         categories: [],
-        isLoading: true,
-        searchTerm: action.payload.searchTerm
+        isLoading: true
       };
     case TYPES.FETCH_PRODUCTS:
+      if (state.id != action.payload.id) {
+        return state;
+      }
+
       return {
         ...state,
-        categories: action.payload.categories,
-        products: _.mapKeys(action.payload.products, 'id'),
+        ...action.payload,
         selectedProduct: null,
         isLoading: false,
-        searchTerm: action.payload.searchTerm
+        products: _.mapKeys(action.payload.products, 'id')
       };
     case TYPES.FIND_PRODUCT:
+      if (state.id != action.payload.id) {
+        return state;
+      }
+
       return {
         ...state,
-        categories: action.payload.categories,
+        ...action.payload,
         products: [],
-        selectedProduct: action.payload.product,
         isLoading: false,
         searchTerm: ''
       };

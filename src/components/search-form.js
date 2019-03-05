@@ -1,21 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Form, FormControl, InputGroup, Button } from 'react-bootstrap';
 
-const propTypes = {
-  searchTerm: PropTypes.string,
-  placeholder: PropTypes.string,
-  formClassName: PropTypes.string,
-  onChange: PropTypes.func,
-  onSubmit: PropTypes.func
-};
+import './search-form.scss';
 
 const defaultProps = {
   searchTerm: '',
-  placeholder: '',
-  formClassName: '',
-  onChange: null,
-  onSubmit: null
+  placeholder: 'Nunca dejes de buscar'
 };
 
 class SearchForm extends React.Component {
@@ -49,10 +39,9 @@ class SearchForm extends React.Component {
       event.preventDefault();
     }
 
-    const { searchTerm } = this.state;
     const { onSubmit } = this.props;
-
-    onSubmit && onSubmit(searchTerm);
+    const searchTerm = this.state.searchTerm.trim();
+    onSubmit && searchTerm && onSubmit(searchTerm);
   }
 
   render() {
@@ -60,15 +49,18 @@ class SearchForm extends React.Component {
     const { searchTerm } = this.state;
 
     return (
-      <Form className={formClassName} onSubmit={this.onSubmit}>
+      <Form className={`search-form ${formClassName}`} onSubmit={this.onSubmit}>
         <InputGroup>
           <FormControl
+            className="search-form__input"
             value={searchTerm}
             placeholder={placeholder}
             onChange={this.onChange}
           />
           <InputGroup.Append>
-            <Button type="submit">Search</Button>
+            <Button type="submit" className="search-form__submit">
+              Search
+            </Button>
           </InputGroup.Append>
         </InputGroup>
       </Form>
@@ -77,6 +69,5 @@ class SearchForm extends React.Component {
 }
 
 SearchForm.defaultProps = defaultProps;
-SearchForm.propTypes = propTypes;
 
 export default SearchForm;
