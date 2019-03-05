@@ -29,7 +29,7 @@ Build the project and serve the build files for http using [http-server](https:/
 
 (http://localhost:8080)
 
-### Run SSR
+### Run build as SSR
 ```
 > npm serve-ssr
 ```
