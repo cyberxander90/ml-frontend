@@ -8,8 +8,21 @@ import './header.scss';
 import SearchForm from 'components/search-form';
 import { fetchProducts } from 'actions/products';
 
+function onSubmit({ searchText, location, history, fetchProducts }) {
+  const url = `/items?${qs.stringify({ search: searchText })}`;
+  const currentUrl = `${location.pathname}${location.search}`;
+  if (url === currentUrl) {
+    return;
+  }
+
+  history.push(url);
+  if (location.pathname === '/items') {
+    fetchProducts(searchText);
+  }
+}
+
 function Header(props) {
-  const { history, location, searchTerm } = props;
+  const { searchTerm } = props;
   return (
     <Translate>
       {({ translate }) => (
@@ -21,17 +34,7 @@ function Header(props) {
             searchTerm={searchTerm}
             placeholder={translate('placeholder.find')}
             formClassName="header__search-form"
-            onSubmit={searchText => {
-              const url = `/items?${qs.stringify({ search: searchText })}`;
-              const currentUrl = `${location.pathname}${location.search}`;
-              if (url === currentUrl) {
-                return;
-              }
-              history.push(url);
-              if (location.pathname === '/items') {
-                props.fetchProducts(searchText);
-              }
-            }}
+            onSubmit={searchText => onSubmit({ ...props, searchText })}
           />
         </header>
       )}

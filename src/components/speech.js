@@ -35,7 +35,7 @@ class Speech extends React.Component {
 
       this.timeOut = setTimeout(() => {
         this.onAccept();
-      }, 3000);
+      }, 2000);
     }
   }
 

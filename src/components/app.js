@@ -12,6 +12,7 @@ import LoadingBar from 'components/loading-bar';
 import ErrorBoundary from 'components/error-boundary';
 
 class App extends React.Component {
+  // use this to select other language to text translations
   renderLanguageSelector() {
     const { languages, setActiveLanguage } = this.props;
     return (

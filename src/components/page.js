@@ -13,6 +13,7 @@ import {
   FACEBOOK_APP_ID
 } from 'constant';
 
+// get meta tags
 const getMetaTags = ({
   pathname,
   title,

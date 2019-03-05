@@ -12,14 +12,12 @@ import { LocalizeProvider } from 'react-localize-redux';
 import initializer from 'translations/initializer';
 
 import buildStore from 'build-store';
-// eslint-disable-next-line import/extensions
 import App from '../components/app';
 import assetManifestJson from '../../build/asset-manifest.json';
 
 // read the html index build file
 const getHtmlIndexContent = onComplete =>
   fs.readFile(
-    // todo: try to put this absolute configuring the webpack src
     path.resolve(__dirname, '../../build/index.html'),
     'utf8',
     onComplete
@@ -69,6 +67,8 @@ const renderReactTree = (url, modules, context, store) => {
   return result;
 };
 
+// build the full html content
+// todo: we could use some html parser to improve this process
 const buildHtml = ({
   initialHtmlContent,
   helmet,
@@ -102,6 +102,7 @@ const buildHtml = ({
   return result;
 };
 
+//
 function loader(req, res) {
   getHtmlIndexContent((error, htmlContent) => {
     if (error) {

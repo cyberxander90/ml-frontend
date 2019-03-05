@@ -7,6 +7,7 @@ const defaultProps = {
 };
 
 function renderBreadcrumbItem(item, isLast) {
+  // todo: breadcrumb should be links to categories
   return (
     <li key={item.id} className="bread-crumb__item">
       {isLast ? (
@@ -19,13 +20,12 @@ function renderBreadcrumbItem(item, isLast) {
 }
 
 function Breadcrumb(props) {
-  // eslint-disable-next-line react/destructuring-assignment
+  // map array of string to array of {type: str}
   const items = props.items.map(item => {
     let result = { id: shortId.generate() };
-    if (typeof item === 'string') {
-      return { text: item, ...result };
-    }
-    return { ...item, ...result };
+    return typeof item === 'string'
+      ? { text: item, ...result }
+      : { ...item, ...result };
   });
 
   return (

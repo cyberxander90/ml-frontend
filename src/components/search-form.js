@@ -61,7 +61,6 @@ class SearchForm extends React.Component {
         this.updateOptions(searchTerm);
       }, 400);
     });
-    // todo update options
   }
 
   onSubmit(event) {

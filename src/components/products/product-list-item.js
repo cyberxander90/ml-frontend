@@ -8,7 +8,7 @@ import './product-list-item.scss';
 import Price from 'components/price';
 
 const defaultProps = {
-  location: 'Capital Federal',
+  location: 'Capital Federal', // todo: ask where they take the location value
   freeShipping: false
 };
 

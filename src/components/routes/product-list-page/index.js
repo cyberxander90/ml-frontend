@@ -36,14 +36,12 @@ function ProductListPage({ products, categories, isLoading, searchTerm }) {
 }
 
 export default connect(
-  ({ products }) => {
-    return {
-      isLoading: products.isLoading,
-      categories: products.categories,
-      products: _.take(Object.values(products.products), LIMIT_RESULTS),
-      searchTerm: products.searchTerm
-    };
-  },
+  ({ products: { isLoading, categories, products, searchTerm } }) => ({
+    isLoading: isLoading,
+    categories: categories,
+    products: _.take(Object.values(products), LIMIT_RESULTS),
+    searchTerm: searchTerm
+  }),
   { fetchProducts }
 )(
   frontloadConnect(frontload, {

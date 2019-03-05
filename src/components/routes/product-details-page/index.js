@@ -8,9 +8,7 @@ import Breadcrumb from 'components/breadcrumb';
 import Page from 'components/page';
 import Error from 'components/error';
 
-const frontload = async props => {
-  await props.findProduct(props.match.params.id);
-};
+const frontload = async props => await props.findProduct(props.match.params.id);
 
 function ProductDetailsPage({ product, categories, error }) {
   let content,
@@ -40,8 +38,11 @@ function ProductDetailsPage({ product, categories, error }) {
 }
 
 export default connect(
-  ({ products: { selectedProduct, products, error } }, ownProps) => ({
-    categories: products.categories,
+  (
+    { products: { selectedProduct, products, categories, error } },
+    ownProps
+  ) => ({
+    categories,
     product: selectedProduct || products[ownProps.match.params.id],
     error: error && error.response
   }),
