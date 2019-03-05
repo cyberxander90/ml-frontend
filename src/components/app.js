@@ -8,6 +8,7 @@ import './app.scss';
 import Header from 'components/header';
 import Routes from 'components/routes';
 import LoadingBar from 'components/loading-bar';
+import ErrorBoundary from 'components/error-boundary';
 
 function App() {
   const bootstrapLayout = {
@@ -17,8 +18,8 @@ function App() {
   };
 
   return (
-    <React.Fragment>
-      <Offline>
+    <ErrorBoundary>
+      <Offline polling={false}>
         <div className="alert-important">
           You are offline, please try to reconnect
         </div>
@@ -36,7 +37,7 @@ function App() {
           </Col>
         </Row>
       </Container>
-    </React.Fragment>
+    </ErrorBoundary>
   );
 }
 
