@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Frontload } from 'react-frontload';
 import { LocalizeProvider } from 'react-localize-redux';
 import Loadable from 'react-loadable';
+import initializer from 'translations/initializer';
 
 import './index.scss';
 import './components/search-form.scss';
@@ -15,7 +16,7 @@ const Application = (
   <Provider store={buildStore()}>
     <BrowserRouter>
       <Frontload noServerRender>
-        <LocalizeProvider>
+        <LocalizeProvider initialize={initializer}>
           <App />
         </LocalizeProvider>
       </Frontload>

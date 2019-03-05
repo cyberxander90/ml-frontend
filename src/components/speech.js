@@ -5,17 +5,38 @@ import Image from 'react-bootstrap/Image';
 import SpeechRecognition from 'react-speech-recognition';
 import { Translate } from 'react-localize-redux';
 
-import './speech-recognition-form.scss';
+import './speech.scss';
 
-class SpeechRecognitionForm extends React.Component {
+class Speech extends React.Component {
   constructor() {
     super(...arguments);
 
     this.state = { isModalOpen: false };
+    this.acceptButton = null;
+    this.timeOut = null;
 
     this.onCancel = this.onCancel.bind(this);
     this.onAccept = this.onAccept.bind(this);
     this.openModal = this.openModal.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.acceptButton) {
+      this.acceptButton.focus();
+    }
+
+    if (
+      this.state.isModalOpen &&
+      prevProps.transcript !== this.props.transcript
+    ) {
+      if (this.timeOut) {
+        clearTimeout(this.timeOut);
+      }
+
+      this.timeOut = setTimeout(() => {
+        this.onAccept();
+      }, 3000);
+    }
   }
 
   onCancel() {
@@ -70,7 +91,11 @@ class SpeechRecognitionForm extends React.Component {
             <Button variant="secondary" onClick={this.onCancel}>
               <Translate id="speech.cancel" />
             </Button>
-            <Button variant="primary" onClick={this.onAccept}>
+            <Button
+              variant="primary"
+              onClick={this.onAccept}
+              ref={element => (this.acceptButton = element)}
+            >
               <Translate id="speech.accept" />
             </Button>
           </Modal.Footer>
@@ -82,4 +107,4 @@ class SpeechRecognitionForm extends React.Component {
 
 export default SpeechRecognition({
   autoStart: false
-})(SpeechRecognitionForm);
+})(Speech);

@@ -8,6 +8,8 @@ import { Frontload, frontloadServerRender } from 'react-frontload';
 import Loadable from 'react-loadable';
 import Helmet from 'react-helmet';
 import serializeJavascript from 'serialize-javascript';
+import { LocalizeProvider } from 'react-localize-redux';
+import initializer from 'translations/initializer';
 
 import buildStore from 'build-store';
 // eslint-disable-next-line import/extensions
@@ -27,7 +29,8 @@ const getHtmlIndexContent = onComplete =>
 const getAssetScripts = requiredAssets =>
   Object.keys(assetManifestJson)
     .filter(
-      assetName => requiredAssets.indexOf(assetName.replace('.js', '')) != -1
+      assetName =>
+        assetName.startsWith(`${requiredAssets}.`) && assetName.endsWith('js')
     )
     .filter(assetName => assetManifestJson[assetName]);
 
@@ -55,13 +58,14 @@ const renderReactTree = (url, modules, context, store) => {
       <Provider store={store}>
         <StaticRouter location={url} context={context}>
           <Frontload>
-            <App />
+            <LocalizeProvider initialize={initializer}>
+              <App />
+            </LocalizeProvider>
           </Frontload>
         </StaticRouter>
       </Provider>
     </Loadable.Capture>
   );
-  console.log(result);
   return result;
 };
 
@@ -114,16 +118,10 @@ function loader(req, res) {
         return handleRedirection(res, context.url);
       }
 
-      // indicate helmet to computed tags
-      const helmet = Helmet.renderStatic();
-      console.log('THE TITLE', helmet.title.toString());
-      console.log('****************************');
-      console.log(getAssetScripts(modules));
-
       res.send(
         buildHtml({
           initialHtmlContent: htmlContent,
-          helmet: Helmet.renderStatic(),
+          helmet: Helmet.renderStatic(), // recompute tags
           reactTreeContent,
           assetsScripts: getAssetScripts(modules),
           assetsStyles: getAssetStyles(),

@@ -7,7 +7,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Image from 'react-bootstrap/Image';
 
 import './search-form.scss';
-import SpeechRecognitionForm from 'components/speech-recognition-form';
+import Speech from 'components/speech';
 import enhanceWithClickOutside from 'react-click-outside';
 import { getProductOptions } from 'services/products';
 
@@ -165,7 +165,7 @@ class SearchForm extends React.Component {
           />
           <InputGroup.Append>
             <InputGroup.Text className="search-form__speech">
-              <SpeechRecognitionForm onSubmit={this.onSelectSearchTerm} />
+              <Speech onSubmit={this.onSelectSearchTerm} />
             </InputGroup.Text>
             <Button
               variant="light"

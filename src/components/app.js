@@ -3,9 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Offline } from 'react-detect-offline';
-import { renderToStaticMarkup } from 'react-dom/server';
 import { withLocalize, Translate } from 'react-localize-redux';
-import globalTranslations from 'translations/global.json';
 
 import './app.scss';
 import Header from 'components/header';
@@ -14,19 +12,6 @@ import LoadingBar from 'components/loading-bar';
 import ErrorBoundary from 'components/error-boundary';
 
 class App extends React.Component {
-  constructor() {
-    super(...arguments);
-
-    this.props.initialize({
-      languages: [
-        { name: 'English', code: 'en' },
-        { name: 'Spanish', code: 'es' }
-      ],
-      translation: globalTranslations,
-      options: { renderToStaticMarkup }
-    });
-  }
-
   renderLanguageSelector() {
     const { languages, setActiveLanguage } = this.props;
     return (

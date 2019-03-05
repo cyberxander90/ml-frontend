@@ -44,7 +44,6 @@ export const findProduct = productId => async (dispatch, getState, api) => {
 
   await api.get(`/item/${productId}`)
     .then(response => {
-      console.log(response)
       const { data: { item, categories } } = response ;
       return dispatch({
         type: TYPES.FIND_PRODUCT,
@@ -56,7 +55,6 @@ export const findProduct = productId => async (dispatch, getState, api) => {
       });
     })
     .catch(error => {
-      console.log(error)
       return dispatch({
         type: TYPES.FAIL_LOADING_PRODUCTS,
         payload: { error, id }
