@@ -22,16 +22,16 @@ Default **start** for [CRA](https://github.com/facebook/create-react-app)
 
 ### Run build as SPA
 ```
-> npm serve
+> npm run serve
 ```
 
-Build the project and serve the build files for http using [http-server](https://github.com/indexzero/http-server).
+Build the project and serve the build files using [http-server](https://github.com/indexzero/http-server).
 
 (http://localhost:8080)
 
 ### Run build as SSR
 ```
-> npm serve-ssr
+> npm run serve-ssr
 ```
 
 Build the project and start a simple [express](http://expressjs.com/) server to serve the app with **SSR**
