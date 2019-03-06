@@ -4,7 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory, createMemoryHistory } from 'history';
 import reducers from 'reducers/index';
-import api from 'apis/api';
+import api, { handleError } from 'apis/api';
 
 // indicate if we are running from server (or browser)
 const isFromServer = () =>
@@ -34,7 +34,7 @@ function buildStore(url = '/') {
     getPreloadedState(),
     composeEnhancers(
       applyMiddleware(
-        reduxThunk.withExtraArgument(api),
+        reduxThunk.withExtraArgument({ api, handleError }),
         routerMiddleware(history)
       )
       // other store enhancers if any

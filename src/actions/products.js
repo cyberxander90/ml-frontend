@@ -5,7 +5,7 @@ import shortId from 'shortid';
 
 // prettier-ignore
 export const fetchProducts = (searchTerm, limit = LIMIT_RESULTS) =>
-  async (dispatch, getState, api) => {
+  async (dispatch, getState, { api, handleError }) => {
     const id = shortId.generate();
 
     dispatch({
@@ -13,9 +13,22 @@ export const fetchProducts = (searchTerm, limit = LIMIT_RESULTS) =>
       payload: { searchTerm, id }
     });
 
-    const query = qs.stringify({ q: searchTerm, limit });
+    let response = null;    
     try {
-      const { data: { items, categories } } = await api.get(`/items?${query}`);
+      const query = qs.stringify({ q: searchTerm, limit });
+      response = await api.get(`/items?${query}`);
+    } catch (error) {
+      dispatch({
+        type: TYPES.FAIL_LOADING_PRODUCTS,
+        payload: {
+          error: handleError(error),
+          id
+        }
+      });
+    }
+
+    if (response) {
+      const { data: { items, categories } } = response;
       dispatch({
         type: TYPES.FETCH_PRODUCTS,
         payload: {
@@ -25,16 +38,11 @@ export const fetchProducts = (searchTerm, limit = LIMIT_RESULTS) =>
           id
         }
       });
-    } catch (error) {
-      dispatch({
-        type: TYPES.FAIL_LOADING_PRODUCTS,
-        payload: { error, id }
-      });
-    }
+    }    
   };
 
 // prettier-ignore
-export const findProduct = productId => async (dispatch, getState, api) => {
+export const findProduct = productId => async (dispatch, getState, { api, handleError }) => {
   const id = shortId.generate();
 
   dispatch({
@@ -42,22 +50,28 @@ export const findProduct = productId => async (dispatch, getState, api) => {
     payload: { searchTerm: '', id }
   });
 
-  await api.get(`/item/${productId}`)
-    .then(response => {
-      const { data: { item, categories } } = response ;
-      return dispatch({
-        type: TYPES.FIND_PRODUCT,
-        payload: {
-          selectedProduct: item,
-          categories,
-          id
-        }
-      });
-    })
-    .catch(error => {
-      return dispatch({
-        type: TYPES.FAIL_LOADING_PRODUCTS,
-        payload: { error, id }
-      });
-    })
+  let response = null;
+  try {
+    response = await api.get(`/item/${productId}`)
+  } catch (error) {
+    dispatch({
+      type: TYPES.FAIL_LOADING_PRODUCTS,
+      payload: {
+        id,
+        error: handleError(error)
+      }
+    });
+  }
+
+  if (response) {
+    const { data: { item, categories } } = response ;
+    dispatch({
+      type: TYPES.FIND_PRODUCT,
+      payload: {
+        selectedProduct: item,
+        categories,
+        id
+      }
+    });
+  }
 };

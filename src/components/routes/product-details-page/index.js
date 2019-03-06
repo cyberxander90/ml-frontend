@@ -13,10 +13,11 @@ const frontload = async props => await props.findProduct(props.match.params.id);
 function ProductDetailsPage({ product, categories, error }) {
   let content,
     title,
-    description = null;
+    description,
+    image = null;
 
   if (error) {
-    content = <Error status={error.status} message={error.data.message} />;
+    content = <Error status={error.status} message={error.message} />;
   } else if (product) {
     content = (
       <React.Fragment>
@@ -28,10 +29,11 @@ function ProductDetailsPage({ product, categories, error }) {
     );
     title = product.title;
     description = product.description;
+    image = product.picture;
   }
 
   return (
-    <Page title={title} description={description}>
+    <Page title={title} description={description} image={image}>
       {content}
     </Page>
   );
@@ -44,7 +46,7 @@ export default connect(
   ) => ({
     categories,
     product: selectedProduct || products[ownProps.match.params.id],
-    error: error && error.response
+    error
   }),
   { findProduct }
 )(

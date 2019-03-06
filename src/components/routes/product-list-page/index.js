@@ -9,6 +9,7 @@ import ProductList from 'components/products/product-list';
 import Breadcrumb from 'components/breadcrumb';
 import Page from 'components/page';
 import { Translate } from 'react-localize-redux';
+import Error from 'components/error';
 
 const frontload = async props => {
   const query = queryString.parse(props.location.search);
@@ -18,9 +19,19 @@ const frontload = async props => {
   await props.fetchProducts(query.search);
 };
 
-function ProductListPage({ products, categories, isLoading, searchTerm }) {
+function ProductListPage({
+  products,
+  categories,
+  isLoading,
+  searchTerm,
+  error
+}) {
   if (isLoading) {
     return null;
+  }
+
+  if (error) {
+    return <Error status={error.status} message={error.message} />;
   }
 
   return (
@@ -36,11 +47,12 @@ function ProductListPage({ products, categories, isLoading, searchTerm }) {
 }
 
 export default connect(
-  ({ products: { isLoading, categories, products, searchTerm } }) => ({
+  ({ products: { isLoading, categories, products, searchTerm, error } }) => ({
     isLoading: isLoading,
     categories: categories,
     products: _.take(Object.values(products), LIMIT_RESULTS),
-    searchTerm: searchTerm
+    searchTerm: searchTerm,
+    error
   }),
   { fetchProducts }
 )(
