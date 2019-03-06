@@ -59,7 +59,7 @@ class SearchForm extends React.Component {
       }
       this.timeOut = setTimeout(() => {
         this.updateOptions(searchTerm);
-      }, 400);
+      }, 200);
     });
   }
 
@@ -94,6 +94,11 @@ class SearchForm extends React.Component {
   onKeyDown(event) {
     if (event.key === 'Escape') {
       this.setState({ isListOptionsActive: false });
+      return;
+    }
+
+    if (!this.state.isListOptionsActive) {
+      this.setState({ isListOptionsActive: true });
     }
   }
 
