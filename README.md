@@ -7,29 +7,13 @@ This project depends on the [Mercado Libre Test - API](https://github.com/cyberx
 ## Run
 
 ### Install Dependencies
+
 ```
 > npm install
 ```
 
-### Run for development
-```
-> npm start
-```
-
-Default **start** for [CRA](https://github.com/facebook/create-react-app)
-
-(http://localhost:3000).
-
-### Run build as SPA
-```
-> npm run serve
-```
-
-Build the project and serve the build files using [http-server](https://github.com/indexzero/http-server).
-
-(http://localhost:8080)
-
 ### Run build as SSR
+
 ```
 > npm run serve-ssr
 ```
@@ -39,7 +23,28 @@ Build the project and start a simple [express](http://expressjs.com/) server to 
 (http://localhost:3000).
 **This is the preferred way to test the App**.
 
+### Run for development
+
+```
+> npm start
+```
+
+Default **start** for [CRA](https://github.com/facebook/create-react-app)
+
+(http://localhost:3000).
+
+### Run build as SPA
+
+```
+> npm run serve
+```
+
+Build the project and serve the build files using [http-server](https://github.com/indexzero/http-server).
+
+(http://localhost:8080)
+
 ## Env
+
 You can setup your **.env** file to override the defaults props
 
 - PORT=3001
