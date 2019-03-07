@@ -7,12 +7,13 @@ import { Translate } from 'react-localize-redux';
 
 import './product-details.scss';
 import Price from 'components/price';
+import ImgCarousel from 'components/img-carousel';
 
 const isNew = condition => condition === 'new';
 const isPlural = n => n !== 1;
 
 function ProductDetails({
-  picture,
+  pictures,
   condition,
   soldQuantity,
   title,
@@ -23,7 +24,11 @@ function ProductDetails({
   return (
     <Row className="product-details">
       <Col sm={12} md={8}>
-        <Image className="product-details__image" src={picture} />
+        <ImgCarousel
+          images={pictures}
+          imgClassName="product-details__image"
+          interval={null}
+        />
       </Col>
       <Col sm={12} md={4}>
         <span className="product-details__condition">
