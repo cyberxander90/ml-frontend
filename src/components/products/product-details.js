@@ -1,6 +1,5 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
-import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import { Translate } from 'react-localize-redux';

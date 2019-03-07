@@ -1,7 +1,8 @@
 import store from 'store';
-import _ from 'lodash';
+import takeRight from 'lodash/takeRight';
+import sortBy from 'lodash/sortBy';
 import axios from 'axios';
-import qs from 'qs';
+import qs from 'qs/';
 
 export const setVisitProduct = product => {
   const products = store.get('products') || {};
@@ -18,12 +19,12 @@ export const setVisitProduct = product => {
 
 export const getTopViewProducts = (limit = 3) => {
   const products = Object.values(store.get('products') || {});
-  return _.takeRight(_.sortBy(products, ['visits']), limit).reverse();
+  return takeRight(sortBy(products, ['visits']), limit).reverse();
 };
 
 export const getLastViewProducts = (limit = 3) => {
   const products = Object.values(store.get('products') || {});
-  return _.takeRight(_.sortBy(products, ['lastVisit']), limit).reverse();
+  return takeRight(sortBy(products, ['lastVisit']), limit).reverse();
 };
 
 export const getProductOptions = (searchTerm, limit = 6) => {

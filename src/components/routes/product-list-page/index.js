@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { frontloadConnect } from 'react-frontload';
 import queryString from 'query-string';
-import _ from 'lodash';
+import take from 'lodash/take';
 import { fetchProducts } from 'actions/products';
 import { LIMIT_RESULTS } from 'constant';
 import ProductList from 'components/products/product-list';
@@ -50,7 +50,7 @@ export default connect(
   ({ products: { isLoading, categories, products, searchTerm, error } }) => ({
     isLoading: isLoading,
     categories: categories,
-    products: _.take(Object.values(products), LIMIT_RESULTS),
+    products: take(Object.values(products), LIMIT_RESULTS),
     searchTerm: searchTerm,
     error
   }),

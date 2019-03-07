@@ -9,7 +9,6 @@ export const handleAxiosError = error => {
   if (!error) {
     return error;
   }
-  console.log(error);
 
   return {
     status:

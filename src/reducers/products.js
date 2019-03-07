@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import mapKeys from 'lodash/mapKeys';
 import * as TYPES from 'actions/types';
 import { setVisitProduct } from 'services/products';
 
@@ -43,7 +43,7 @@ export default function(state = initialState, action) {
         ...action.payload,
         selectedProduct: null,
         isLoading: false,
-        products: _.mapKeys(action.payload.products, 'id')
+        products: mapKeys(action.payload.products, 'id')
       };
 
     case TYPES.FIND_PRODUCT:

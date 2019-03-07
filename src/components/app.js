@@ -45,6 +45,7 @@ class App extends React.Component {
         <Container fluid className="app">
           <Row className="app__top-bar">
             <Col {...bootstrapLayout}>
+              {/* {this.renderLanguageSelector()} */}
               <Header />
             </Col>
           </Row>
