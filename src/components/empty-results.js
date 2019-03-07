@@ -29,4 +29,4 @@ function EmptyResults() {
   );
 }
 
-export default EmptyResults;
+export default React.memo(EmptyResults);

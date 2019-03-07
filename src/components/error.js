@@ -16,4 +16,4 @@ function Error({ status, message }) {
   );
 }
 
-export default Error;
+export default React.memo(Error);

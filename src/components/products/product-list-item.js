@@ -53,4 +53,4 @@ function ProductListItem({
 
 ProductListItem.defaultProps = defaultProps;
 
-export default ProductListItem;
+export default React.memo(ProductListItem);

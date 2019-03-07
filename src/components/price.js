@@ -27,4 +27,4 @@ function Price({ className, amount, currency, description, freeShipping }) {
   );
 }
 
-export default Price;
+export default React.memo(Price);

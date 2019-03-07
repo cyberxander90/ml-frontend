@@ -53,4 +53,4 @@ function ProductDetails({
   );
 }
 
-export default ProductDetails;
+export default React.memo(ProductDetails);

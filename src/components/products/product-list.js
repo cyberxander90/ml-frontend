@@ -28,4 +28,4 @@ function ProductList({ products }) {
 
 ProductList.defaultProps = defaultProps;
 
-export default ProductList;
+export default React.memo(ProductList);

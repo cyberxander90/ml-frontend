@@ -24,4 +24,4 @@ function ProductCardList({ title, products }) {
   );
 }
 
-export default ProductCardList;
+export default React.memo(ProductCardList);

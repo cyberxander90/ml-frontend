@@ -17,4 +17,4 @@ function ProductCard({ id, title, picture }) {
   );
 }
 
-export default ProductCard;
+export default React.memo(ProductCard);

@@ -41,4 +41,4 @@ function Breadcrumb(props) {
 
 Breadcrumb.defaultProps = defaultProps;
 
-export default Breadcrumb;
+export default React.memo(Breadcrumb);
